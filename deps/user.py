@@ -4,14 +4,14 @@ from sqlalchemy.orm import Session
 from models.user import User
 from core.security import hash_password
 
-def create(user_payload : UserCreate, db : Session) -> UserResponse :
+def create(user_payload : UserCreate, db : Session)  :
     user_payload.password = hash_password(user_payload.password)
     stmt = select(User).where(User.email == user_payload.email)
     user = db.scalars(stmt).first()
 
-    if not user :
+    if user :
         raise Exception(
-            "not found"
+            "user laready exists"
         )
 
     db_user = User(**user_payload.model_dump())

@@ -5,6 +5,7 @@ from models.base import Base
 
 
 class User(Base):
+    __tablename__= "users"
     name : Mapped[str] = mapped_column(String)
     email : Mapped[str] = mapped_column(String)
     password : Mapped[str] = mapped_column(String)

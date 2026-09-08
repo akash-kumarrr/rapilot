@@ -8,7 +8,7 @@ from sqlalchemy import Boolean
 
 
 
-class BaseModel(DeclarativeBase):
+class Base(DeclarativeBase):
     __abstract__ = True  
     id: Mapped[str] = mapped_column(
         String(36),

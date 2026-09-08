@@ -2,6 +2,7 @@ from pydantic import BaseModel, EmailStr, Field
 
 # Base schema with shared fields
 class UserBase(BaseModel):
+    name : str
     email: EmailStr
 
 class UserCreate(UserBase):

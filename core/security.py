@@ -12,13 +12,16 @@ from fastapi import HTTPException, status, Depends
 
 from sqlalchemy.orm import Session
 
-hand = PasswordHash.recommended()
+from pwdlib.hashers.argon2 import Argon2Hasher
+
+hand = PasswordHash((Argon2Hasher(), ))
 
 oauth2_scheme = OAuth2PasswordBearer(
     tokenUrl="/auth/login"
 )
 
-def hash_password(plain_password: str) -> str :
+
+def hash_password(plain_password: str) -> str:
     return hand.hash(plain_password)
 
 def verify_password(plain_passsword: str, hashed_password : str) -> bool : 

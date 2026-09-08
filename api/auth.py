@@ -39,7 +39,7 @@ async def login(credentials : OAuth2PasswordRequestForm = Depends(), db : Sessio
     stmt = select(User).where(User.email == credentials.username)
     user = db.execute(stmt).scalar_one_or_none()
 
-    if not user or not verify_password(credentials.password, User.password):
+    if not user or not verify_password(credentials.password, user.password):
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Invalid email or password",
