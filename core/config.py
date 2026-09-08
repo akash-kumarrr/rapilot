@@ -10,6 +10,8 @@ class Settings(BaseSettings):
     jwt_access_time : int 
     jwt_algorithm : str
 
+    
+
     model_config = SettingsConfigDict(
         env_file=".env",
         env_file_encoding="utf-8"

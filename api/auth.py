@@ -56,4 +56,3 @@ async def login(credentials : OAuth2PasswordRequestForm = Depends(), db : Sessio
 @router.get("/me")
 async def read_user_me(current_user : User = Depends(get_current_user)):
     return current_user
-
