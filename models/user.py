@@ -16,4 +16,3 @@ class User(Base):
     password : Mapped[str] = mapped_column(String)
 
     rides : Mapped[List["Ride"]] = relationship(back_populates="passenger")
-
