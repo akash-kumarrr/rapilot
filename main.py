@@ -8,7 +8,9 @@ from models.base import Base
 
 from api.auth import router as auth_router
 from api.user import router as user_router
-from api.book_ride import router as book_ride_route
+from api.rides import router as book_ride_route
+
+import models
 
 @asynccontextmanager
 async def lifespan(app : FastAPI):

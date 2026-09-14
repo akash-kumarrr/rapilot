@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from models.user import User
 
-from deps.ride import create_ride, read_ride, delete_ride
+from deps.ride import create_ride, read_ride, delete_ride, get_near_rides
 
 router = APIRouter(
     prefix="/ride",
@@ -33,4 +33,13 @@ async def get(ride_id : str, db : Session = Depends(get_db)):
     try : 
         return delete_ride(ride_id=ride_id, db=db)
     except Exception:
+        raise
+
+
+@router.get("/get-nearby-request")
+async def get_nearby_requests(captain_live_long : float, captain_live_lat : float):
+    "Ride Requests nearby by captain live location"
+    try :
+        return get_near_rides(captain_live_long, captain_live_lat)
+    except Exception :
         raise
